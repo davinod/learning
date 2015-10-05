@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="namesCtrl">
+        <ul>
+            <li ng-repeat="x in names">
+                {{x.name + ', ' + x.country}}
+            </li>
+        </ul>
+    </div>
+    <script src="../JS/namesController.js"></script>
+</body>
+</html>

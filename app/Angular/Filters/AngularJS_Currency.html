@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="costCtrl">
+
+        <input type="number" ng-model="quantity">
+        <input type="number" ng-model="price">
+
+        <p>Total = {{ (quantity * price) | currency }}</p>
+
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('costCtrl', function($scope) {
+            $scope.quantity = 1;
+            $scope.price = 9.99;
+        });
+    </script>
+</body>
+</html>
