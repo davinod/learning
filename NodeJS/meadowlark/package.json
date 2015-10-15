@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/davinod/learning#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1"
   }
 }
