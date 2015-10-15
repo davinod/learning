@@ -1,0 +1,30 @@
+{
+  "name": "meadowlark",
+  "version": "1.0.0",
+  "description": "meadowlark implementation by davinod",
+  "main": "meadowlark.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davinod/learning.git"
+  },
+  "keywords": [
+    "davinod",
+    "nodejs",
+    "express"
+  ],
+  "author": "davinod",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davinod/learning/issues"
+  },
+  "homepage": "https://github.com/davinod/learning#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
