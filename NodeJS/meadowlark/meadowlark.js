@@ -1,11 +1,9 @@
+//Declaring variables
 var express = require('express');
-
 var app = express();
-
 var handlebars = require('express-handlebars')
 	.create({ defaultLayout:'main' });
-
-var fortune = require('./lib/fortune.js");
+var fortune = require('./lib/fortune.js');
 
 //Configuring handlebars to get views/layouts
 app.engine('handlebars', handlebars.engine);
@@ -19,6 +17,12 @@ app.use(express.static(__dirname + '/public'));
 
 // ******** Routes *********
 
+app.use(function(req, res, next){
+	res.locals.showTests = app.get('env') !== 'production' &&
+		req.query.test === '1';
+	next();
+});
+
 // Home
 app.get('/', function(req, res){
 	res.render('home');
@@ -26,7 +30,20 @@ app.get('/', function(req, res){
 
 // About
 app.get('/about', function(req, res){
-	res.render('about', { fortune: fortune.getFortune() });
+	res.render('about', {
+		fortune: fortune.getFortune(),
+		pageTestScript: '/qa/tests-about.js'
+	});
+});
+
+//Hood River Tour
+app.get('/tours/hood-river', function(req, res){
+	res.render('tours/hood-river');
+});
+
+//Request Group Rate
+app.get('/tours/request-group-rate', function(req, res){
+	res.render('tours/request-group-rate');
 });
 
 // ******* Exceptions ********
