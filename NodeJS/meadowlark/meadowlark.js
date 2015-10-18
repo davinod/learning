@@ -28,6 +28,11 @@ app.get('/', function(req, res){
 	res.render('home');
 });
 
+//Home
+app.get('/felipe', function(req, res){
+	res.render('felipe');
+});
+
 // About
 app.get('/about', function(req, res){
 	res.render('about', {
