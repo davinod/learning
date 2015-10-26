@@ -50,6 +50,9 @@ app.use(function(req, res, next){
 	next();
 });
 
+//newsletter
+app.use(require('body-parser').urlencoded({ extended:  true }));
+
 // ******** Routes *********
 
 app.use(function(req, res, next){
@@ -61,6 +64,20 @@ app.use(function(req, res, next){
 // Home
 app.get('/', function(req, res){
 	res.render('home');
+});
+
+//Newsletter
+app.get('/newsletter', function(req, res){
+	res.render('newsletter', { csrf: 'CSRF token goes here' });
+});
+
+//Newsletter process
+app.post('/process', function(req, res){
+	console.log('Form (from querystring): ' + req.query.form);
+	console.log('CSRF toke (from hidden form field): ' + req.body._csrf);
+	console.log('Name (from visible field): ' + req.body.name);
+	console.log('Email (from visible field): ' + req.body.email);
+	res.redirect(303, '/thank-you');
 });
 
 //Home
