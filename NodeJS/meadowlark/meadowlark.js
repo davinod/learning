@@ -71,13 +71,21 @@ app.get('/newsletter', function(req, res){
 	res.render('newsletter', { csrf: 'CSRF token goes here' });
 });
 
-//Newsletter process
+//Newsletter thank-you
+app.get('/thank-you', function(req, res){
+	console.log('req.body.name: ' + req.query.name);
+	console.log('req.body.email: ' + req.query.email);
+	res.render('thank-you', { name: req.query.name, email: req.query.email });
+});
+
 app.post('/process', function(req, res){
-	console.log('Form (from querystring): ' + req.query.form);
-	console.log('CSRF toke (from hidden form field): ' + req.body._csrf);
-	console.log('Name (from visible field): ' + req.body.name);
-	console.log('Email (from visible field): ' + req.body.email);
-	res.redirect(303, '/thank-you');
+	if(req.xhr || req.accepts('json,html')==='json'){
+		//if there was an error, then we would send { error: 'error description' }
+		res.send({ success: true });
+	} else {
+		//if there was an error, then we would redirect to an error page
+		res.redirect(303, '/thank-you');
+	}
 });
 
 //Home
