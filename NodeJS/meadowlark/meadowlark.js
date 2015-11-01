@@ -107,7 +107,7 @@ app.post('/contest/vacation-photo/:year/:month', function(req, res){
 		console.log('received fields:');
 		console.log(fields);
 		console.log('name=' + fields.name);
-		console.log('email=' + fields.email);
+		console.log('email= ' + fields.email);
 		console.log('received files:');
 		console.log(files);
 		
