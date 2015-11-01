@@ -72,18 +72,20 @@ app.get('/newsletter', function(req, res){
 });
 
 //Newsletter thank-you
-app.get('/thank-you', function(req, res){
-	console.log('req.body.name: ' + req.query.name);
-	console.log('req.body.email: ' + req.query.email);
-	res.render('thank-you', { name: req.query.name, email: req.query.email });
-});
+//app.get('/thank-you', function(req, res){
+//	console.log('req.body.name: ' + req.query.name);
+//	console.log('req.body.email: ' + req.query.email);
+//	res.render('thank-you', { name: req.query.name, email: req.query.email });
+//});
 
 app.post('/process', function(req, res){
 	if(req.xhr || req.accepts('json,html')==='json'){
 		//if there was an error, then we would send { error: 'error description' }
+		console.log('Ajax request');
 		res.send({ success: true });
 	} else {
 		//if there was an error, then we would redirect to an error page
+		console.log('Non-ajax request');
 		res.redirect(303, '/thank-you');
 	}
 });
