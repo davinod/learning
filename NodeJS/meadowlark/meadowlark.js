@@ -4,6 +4,7 @@ var app = express();
 var handlebars = require('express-handlebars').create({
 	defaultLayout:'main' });
 var fortune = require('./lib/fortune.js');
+var formidable = require('formidable');
 
 function getWeatherData(){
 	return{
@@ -66,17 +67,36 @@ app.get('/', function(req, res){
 	res.render('home');
 });
 
+//vacation-photo
+app.get('/contest/vacation-photo', function(req, res){
+	var now = new Date();
+	res.render('contest/vacation-photo',{
+		year: now.getFullYear(),month: now.getMonth()
+	});
+});
+
+//vacation-photo submission
+app.post('/contest/vacation-photo/:year/:month', function(req, res){
+	var form = new formidable.IncomingForm();
+	form.parse(req, function(err, fields, files){
+		if(err) return res.redirect(303, '/error');
+		console.log('received fields:');
+		console.log(fields);
+		console.log('received files:');
+		console.log(files);
+		res.redirect(303, '/thank-you');
+	});
+});
+
 //Newsletter
 app.get('/newsletter', function(req, res){
 	res.render('newsletter', { csrf: 'CSRF token goes here' });
 });
 
 //Newsletter thank-you
-//app.get('/thank-you', function(req, res){
-//	console.log('req.body.name: ' + req.query.name);
-//	console.log('req.body.email: ' + req.query.email);
-//	res.render('thank-you', { name: req.query.name, email: req.query.email });
-//});
+app.get('/thank-you', function(req, res){
+	res.render('thank-you');
+});
 
 app.post('/process', function(req, res){
 	if(req.xhr || req.accepts('json,html')==='json'){
