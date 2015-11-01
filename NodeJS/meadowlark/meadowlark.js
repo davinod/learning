@@ -82,6 +82,8 @@ app.post('/contest/vacation-photo/:year/:month', function(req, res){
 		if(err) return res.redirect(303, '/error');
 		console.log('received fields:');
 		console.log(fields);
+		console.log('name=' + fields.name);
+		console.log('email=' + fields.email);
 		console.log('received files:');
 		console.log(files);
 		res.redirect(303, '/thank-you');
