@@ -5,11 +5,11 @@ var handlebars = require('express-handlebars').create({
 	defaultLayout:'main' });
 var fortune = require('./lib/fortune.js');
 var formidable = require('formidable');
-<<<<<<< HEAD
+
 var jqupload = require('jquery-file-upload-middleware');
 var credentials = require('./credentials.js');
-=======
->>>>>>> refs/remotes/origin/dev-int
+
+
 
 function getWeatherData(){
 	return{
@@ -91,7 +91,6 @@ app.get('/', function(req, res){
 //vacation-photo
 app.get('/contest/vacation-photo', function(req, res){
 	var now = new Date();
-<<<<<<< HEAD
 	res.cookie('monster', 'nom nom');
 	res.cookie('signed_monster', 'nom nom2', { signed: true });
 	res.render('contest/vacation-photo',{
@@ -102,28 +101,8 @@ app.get('/contest/vacation-photo', function(req, res){
 //vacation-photo submission
 app.post('/contest/vacation-photo/:year/:month', function(req, res){
 	var form = new formidable.IncomingForm();
-	var monster = req.cookies.monster;
-	var signedMonster = req.signedCookies.signed_monster;
-	console.log('monster=' + monster);
-	console.log('signedMonster=' + signedMonster);
-	form.parse(req, function(err, fields, files){
-		if(err) return res.redirect(303, '/error');
-		console.log('received fields:');
-		console.log(fields);
-		console.log('name=' + fields.name);
-		console.log('email= ' + fields.email);
-		console.log('received files:');
-		console.log(files);
-		
-=======
-	res.render('contest/vacation-photo',{
-		year: now.getFullYear(),month: now.getMonth()
-	});
-});
-
-//vacation-photo submission
-app.post('/contest/vacation-photo/:year/:month', function(req, res){
-	var form = new formidable.IncomingForm();
+	console.log('monster=' + req.cookies.monster);
+	console.log('signed_monster=' + req.signedCookies.signed_monster);
 	form.parse(req, function(err, fields, files){
 		if(err) return res.redirect(303, '/error');
 		console.log('received fields:');
@@ -132,7 +111,6 @@ app.post('/contest/vacation-photo/:year/:month', function(req, res){
 		console.log('email=' + fields.email);
 		console.log('received files:');
 		console.log(files);
->>>>>>> refs/remotes/origin/dev-int
 		res.redirect(303, '/thank-you');
 	});
 });
