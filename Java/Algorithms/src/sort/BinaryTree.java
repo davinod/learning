@@ -1,8 +1,18 @@
 package sort;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
+
 import interfaces.* ;
 
 public class BinaryTree implements Algorithm {
 
+	Node root ;	
+	StringBuilder content = new StringBuilder();
+	
 	static class Node {
 		
 		Node right;
@@ -14,12 +24,10 @@ public class BinaryTree implements Algorithm {
 		}
 		
 	}
-	
-	Node root ;
-	
+
 	public BinaryTree(){		
 	}
-		
+
 	@Override
 	public void Insert(Object obj, int value){
 		
@@ -52,9 +60,26 @@ public class BinaryTree implements Algorithm {
 		
 		if (node != null){
 			Print(node.left);
-			System.out.println(" Traversed " + node.value);
+			content.append(node.value + "\n");			
 			Print(node.right);
 		}
+		
+	}
+	
+	@Override
+	public void Sort(File input, File output) throws IOException{
+		
+		Scanner s = new Scanner(input);
+				
+		while (s.hasNext()){
+			Insert(this.root, s.nextInt());
+		}
+		s.close();
+		
+		Print(this.root);
+		
+		Files.write(Paths.get(output.getPath()), content.toString().getBytes(), StandardOpenOption.CREATE);
+		
 		
 	}
 	
